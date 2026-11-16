@@ -1,0 +1,23 @@
+# Used by scripts/setup.sh on Apple Silicon Macs only. CVAT's own images are built for Intel
+# (amd64), so they run under Docker's emulation there. It works, a little slower.
+services:
+  cvat_server:
+    platform: linux/amd64
+  cvat_worker_utils:
+    platform: linux/amd64
+  cvat_worker_import:
+    platform: linux/amd64
+  cvat_worker_export:
+    platform: linux/amd64
+  cvat_worker_annotation:
+    platform: linux/amd64
+  cvat_worker_webhooks:
+    platform: linux/amd64
+  cvat_worker_quality_reports:
+    platform: linux/amd64
+  cvat_worker_chunks:
+    platform: linux/amd64
+  cvat_worker_consensus:
+    platform: linux/amd64
+  cvat_ui:
+    platform: linux/amd64

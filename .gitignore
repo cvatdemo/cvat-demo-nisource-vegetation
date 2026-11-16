@@ -1,0 +1,6 @@
+.demo-credentials
+.venv/
+docker/cvat/
+demo/local-urls.txt
+__pycache__/
+model/.cache/

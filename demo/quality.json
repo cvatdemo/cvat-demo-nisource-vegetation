@@ -1,0 +1,29 @@
+{
+ "max_validations_per_job": 10,
+ "requirements": [
+  {
+   "name": "Baseline tag accuracy",
+   "is_base": true,
+   "annotation_type": "tag",
+   "metric": "accuracy",
+   "required_score": 0.9,
+   "filter": ""
+  },
+  {
+   "name": "Vegetation polygon accuracy",
+   "is_base": true,
+   "annotation_type": "polygon",
+   "metric": "accuracy",
+   "required_score": 0.8,
+   "filter": ""
+  },
+  {
+   "name": "Missed vegetation: catch every encroachment",
+   "is_base": false,
+   "annotation_type": "polygon",
+   "metric": "recall",
+   "required_score": 0.95,
+   "filter": "{\"in\":[{\"var\":\"shape.label\"},[\"vegetation\"]]}"
+  }
+ ]
+}

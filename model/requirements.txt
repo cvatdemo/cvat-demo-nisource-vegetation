@@ -1,0 +1,4 @@
+# The vegetation model is hosted by Roboflow and called over HTTP, so there are no model weights
+# or deep-learning libraries to install here. Just an HTTP client and an image library.
+requests
+pillow

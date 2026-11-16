@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NiSource: try CVAT on your own machine</title>
+<style>
+  :root { --bg:#f6f7f9; --card:#ffffff; --ink:#16202a; --soft:#5b6670; --line:#dde3e8; --brand:#0b5d55; --code:#0f1b24; --codeink:#e8f1f0; --free:#e3f4ea; --paid:#fff1c9; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#10161c; --card:#18212a; --ink:#eef2f5; --soft:#9aa7b2; --line:#2a3642; --brand:#5fd0c2; --code:#0a1016; --codeink:#e8f1f0; --free:#143524; --paid:#40330c; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  main { max-width:780px; margin:0 auto; padding:40px 16px 64px; }
+  h1 { font-size:30px; line-height:1.2; margin:0 0 8px; }
+  h2 { font-size:20px; margin:36px 0 12px; }
+  p { margin:0 0 12px; }
+  .lead { color:var(--soft); font-size:17px; margin-bottom:24px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin:0 0 14px; }
+  .step { display:flex; gap:14px; align-items:flex-start; }
+  .num { flex:none; width:32px; height:32px; border-radius:50%; background:var(--brand); color:var(--card); font-weight:700; display:grid; place-items:center; }
+  .step h3 { margin:3px 0 6px; font-size:17px; }
+  .cmd { display:flex; gap:8px; align-items:center; background:var(--code); color:var(--codeink); border-radius:8px; padding:10px 12px; margin:8px 0; overflow-x:auto; }
+  .cmd code { flex:1; font:14px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; white-space:nowrap; }
+  .cmd button { flex:none; font:inherit; font-size:13px; padding:4px 10px; border-radius:6px; border:1px solid #3a4a57; background:transparent; color:var(--codeink); cursor:pointer; }
+  code.in { font:14px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; background:var(--line); padding:1px 5px; border-radius:4px; }
+  ul { margin:0 0 12px; padding-left:20px; } li { margin:4px 0; }
+  table { width:100%; border-collapse:collapse; font-size:15px; }
+  th, td { text-align:left; vertical-align:top; padding:8px 10px; border-bottom:1px solid var(--line); }
+  th { color:var(--soft); font-weight:600; }
+  .tag { display:inline-block; font-size:12px; font-weight:600; padding:2px 8px; border-radius:999px; }
+  .free { background:var(--free); } .paid { background:var(--paid); }
+  a { color:var(--brand); }
+  .small { color:var(--soft); font-size:14px; }
+  .links { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; }
+  .links a { display:block; text-decoration:none; color:inherit; }
+  .links strong { color:var(--brand); }
+</style>
+</head>
+<body>
+<main>
+  <h1>NiSource: try CVAT on your own machine</h1>
+  <p class="lead">This folder runs the demo you saw, on open-source CVAT v2.82.0, with a sample project ready to explore: 100 photos, the labels, a model's first-pass polygons and a 20-photo answer key.</p>
+
+  <h2>Start in three steps</h2>
+  <div class="card step"><div class="num">1</div><div>
+    <h3>Check you have what it needs</h3>
+    <ul>
+      <li><a href="https://docs.docker.com/get-docker/">Docker Desktop</a>, open and running</li>
+      <li>git, and Python 3.10 or newer (or <a href="https://docs.astral.sh/uv/">uv</a>)</li>
+      <li>About 10 GB of free disk, on Mac, Linux or Windows</li>
+    </ul>
+  </div></div>
+  <div class="card step"><div class="num">2</div><div style="min-width:0;flex:1">
+    <h3>Open a terminal in this folder and run one command</h3>
+    <div class="cmd"><code>bash start.sh</code><button type="button" data-copy="bash start.sh">Copy</button></div>
+    <p class="small">It starts CVAT, loads the project, prints the quality scores and opens your browser. The first run downloads CVAT and can take 10 minutes or more. It is safe to run again.</p>
+  </div></div>
+  <div class="card step"><div class="num">3</div><div>
+    <h3>Sign in</h3>
+    <p>Go to <a href="http://localhost:8080">http://localhost:8080</a> and sign in as <code class="in">demo</code>. The password is printed at the end of step 2 and saved in the file <code class="in">.demo-credentials</code> in this folder. It only exists on your machine.</p>
+  </div></div>
+  <div class="card">
+    <strong>On Windows</strong>
+    <p class="small" style="margin:6px 0 0">Run it inside WSL 2 (Ubuntu). In Docker Desktop, turn on Settings &gt; Resources &gt; WSL integration for your distribution. Unzip this folder inside your WSL home folder (for example <code class="in">~/cvat-demo</code>), not on the C: drive, then run the command above in the Ubuntu terminal. If Python complains about venv: <code class="in">sudo apt install python3-venv</code>. The browser link works from Windows as usual.</p>
+  </div>
+  <p class="small">Using Claude Code or another AI coding assistant? Open this folder in it and say "set up this demo". The file CLAUDE.md tells it what to do.</p>
+
+  <h2>What to try</h2>
+  <div class="card">
+    <table>
+      <tr><th>Try this</th><th>Where</th></tr>
+      <tr><td>See the labels and how they are set once for every batch</td><td>The project page</td></tr>
+      <tr><td>Open the batch the model has already labeled, and step through it with <code class="in">F</code> and <code class="in">D</code></td><td>The model job</td></tr>
+      <tr><td>Fix a polygon, or draw one the model missed</td><td>Any job</td></tr>
+      <tr><td>Look at the answer key that every job is scored against</td><td>The answer key job</td></tr>
+      <tr><td>Score the work again after your changes</td><td><code class="in">bash scripts/quality_report.sh</code></td></tr>
+      <tr><td>Export the labels in your training format</td><td>Task page, Actions, Export task dataset</td></tr>
+      <tr><td>Run a model yourself and upload its polygons</td><td><code class="in">bash scripts/auto_annotate.sh</code></td></tr>
+    </table>
+    <p class="small" style="margin:12px 0 0">The links to each page are printed by step 2 and saved in <code class="in">demo/local-urls.txt</code>.</p>
+  </div>
+  <div class="links">
+    <a class="card" href="clickthrough.html"><strong>The demo, as a click-through</strong><br><span class="small">Every screen from the call, including the CVAT Online features. Works offline.</span></a>
+    <a class="card" href="WALKTHROUGH.md"><strong>Step-by-step walkthrough</strong><br><span class="small">All 27 steps, each marked free or CVAT Online.</span></a>
+  </div>
+
+  <h2>What is free and what is CVAT Online</h2>
+  <div class="card">
+    <table>
+      <tr><th><span class="tag free">Free</span> works here</th><th><span class="tag paid">CVAT Online</span> shown in the click-through</th></tr>
+      <tr><td>Projects, labels, attributes and tags</td><td>The "Finish the job" check that bounces an incomplete batch</td></tr>
+      <tr><td>Import and export in standard formats</td><td>Quality score and rules screens in the browser</td></tr>
+      <tr><td>Answer key jobs, and quality scores from the script</td><td>Segment Anything 3 text prompts</td></tr>
+      <tr><td>Running your own model from the command line</td><td>Built-in and hosted models in one click</td></tr>
+      <tr><td>Manual annotation and review</td><td>Outsource Labeling to CVAT's annotators</td></tr>
+    </table>
+  </div>
+
+  <h2>When you are done</h2>
+  <div class="card">
+    <p>Stop CVAT and keep your work:</p>
+    <div class="cmd"><code>bash scripts/stop.sh</code><button type="button" data-copy="bash scripts/stop.sh">Copy</button></div>
+    <p>Stop CVAT and delete everything it stored:</p>
+    <div class="cmd"><code>bash scripts/stop.sh --delete</code><button type="button" data-copy="bash scripts/stop.sh --delete">Copy</button></div>
+  </div>
+
+  <h2>If something goes wrong</h2>
+  <div class="card">
+    <ul>
+      <li><strong>"Docker is installed but not running":</strong> open Docker Desktop, wait until it has started, and run <code class="in">bash start.sh</code> again.</li>
+      <li><strong>CVAT does not come up:</strong> port 8080 must be free. <code class="in">docker logs cvat_server</code> shows the reason.</li>
+      <li><strong>Start over:</strong> <code class="in">bash scripts/stop.sh --delete</code>, then <code class="in">bash start.sh</code>.</li>
+    </ul>
+  </div>
+
+  <p class="small">The photos are a public dataset, not your data: Aerial imagery from OpenAerialMap contributors, tree-crown annotations from the Restor Foundation OAM-TCD dataset (restor/tcd on Hugging Face). Licensed CC BY 4.0. Only CC-BY-4.0-licensed tiles are used.. Details in LICENSES.md. This CVAT is for evaluation on one machine and is not set up for the internet.</p>
+</main>
+<script>
+  document.querySelectorAll('[data-copy]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var text = b.getAttribute('data-copy');
+      var done = function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1500); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, function () {});
+    });
+  });
+</script>
+</body>
+</html>
